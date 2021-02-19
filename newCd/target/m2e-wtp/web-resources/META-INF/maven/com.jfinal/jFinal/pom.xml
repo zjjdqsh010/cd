@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jfinal</groupId>
+  <artifactId>jFinal</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>jFinal Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- jfinal依赖 -->
+	<dependency>
+	    <groupId>com.jfinal</groupId>
+	    <artifactId>jfinal</artifactId>
+	    <version>4.7</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.jfinal</groupId>
+	    <artifactId>jetty-server</artifactId>
+	    <version>2019.3</version>
+	    <scope>compile</scope>
+	</dependency>
+	<!-- 下面的依赖仅在使用 JSP 时才需要 -->
+	<dependency>
+	    <groupId>org.eclipse.jetty</groupId>
+	    <artifactId>jetty-jsp</artifactId>
+	    <version>9.2.26.v20180806</version>
+	    <scope>compile</scope>
+	</dependency>
+	
+    <dependency>
+	  <groupId>org.freemarker</groupId>
+	  <artifactId>freemarker-gae</artifactId>
+	  <version>2.3.30</version>
+	</dependency>
+	
+  </dependencies>
+  <build>
+    <finalName>jFinal</finalName>
+  </build>
+</project>

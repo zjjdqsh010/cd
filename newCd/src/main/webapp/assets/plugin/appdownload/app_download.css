@@ -1,0 +1,43 @@
+.downBack {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: url(./app_download.png);
+	background-size: 100% auto;
+	text-align: center
+}
+
+.downBtn {
+	opacity: 0;
+	display: block;
+	color: #fff;
+	background: rgba(50, 144, 251, .5);
+	outline: 0;
+	border: 1px solid #3285fb;
+	top: 25%;
+	position: absolute;
+	left: 50%;
+	width: 180px;
+	height: 60px;
+	line-height: 50px;
+	margin-left: -90px;
+	box-shadow: none;
+	border-radius: 5px
+}
+
+.promptBack {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .5);
+	display: none
+}
+
+.promptBack .prompt {
+	width: 100%;
+	height: auto
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 表格插件 -->
+<link rel="stylesheet" href="${ctx}/assets/css/login.css">
+<link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" href="${ctx}/assets/vendor/formvalidation/formValidation.min.css?v=v0.8.1">
+
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<head>
+<title>主页</title>
+
+
+</head>
+
+<body>
+<div id="login_frame">
+	<!-- Page -->
+	<div class="page vertical-align text-center" data-animsition-in="fade-in" data-animsition-out="fade-out">
+		<div class="page-content vertical-align-middle animation-slide-top animation-duration-1">
+			<div class="brand">
+				<h2 class="brand-text mb-50" style="font-size: 44px;">专辑管理系统</h2>
+			</div>
+<!-- 			<p>登录</p> -->
+			<form method="post" role="form" id="dataForm">
+				<div class="form-group text-left">
+					<input type="text" class="form-control" name="userName" id="userName" placeholder="请输入用户名" autocomplete="off" />
+				</div>
+				<div class="form-group text-left">
+					<input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="请输入密码" autocomplete="off" />
+				</div>
+				<div class="form-group text-left">
+					<div class="input-group">
+						<input class="form-control" type="text" autocomplete="off" placeholder="请输入验证码" name="securityCode" />
+						<img src="${ctx}/login/authImg" alt="验证码" class="verifyimg" height="32.02" width="120" id="safecode" onclick="refushcode()" />
+					</div>
+				</div>
+				<button type="submit" id="btnSubmit" class="btn btn-primary btn-block">登录</button>
+			</form>
+		</div>
+	</div>
+</div>	
+		
+<script src="${ctx}/assets/vendor/formvalidation/formValidation.min.js?v=v0.8.1"></script>
+<script src="${ctx}/assets/vendor/formvalidation/framework/bootstrap4.min.js?v=v0.8.1"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	registerDataFormValidate();
+});
+
+function refushcode(){
+	var d = new Date();
+	document.getElementById("safecode").src="${ctx}/login/authImg?t="+d.getTime();
+}
+
+//提交信息验证
+function registerDataFormValidate() {
+	$('#dataForm').formValidation({
+		framework : "bootstrap4",
+		button : {
+			selector : '#btnSubmit',
+			disabled : 'disabled'
+		},
+		icon : null,
+		fields : {
+			"userName":{
+				validators : {
+					notEmpty : {
+						message : '请输入用户名'
+					}
+				}
+			},
+			"userPwd":{
+				validators : {
+					notEmpty : {
+						message : '请输入密码'
+					}
+				}
+			},
+			"securityCode":{
+				validators : {
+					notEmpty : {
+						message : '请输入验证码'
+					}
+				}
+			}
+		},
+		err : {
+			clazz : 'invalid-feedback'
+		},
+		control : {
+			valid : 'is-valid',
+			invalid : 'is-invalid'
+		},
+		row : {
+			invalid : 'has-danger'
+		},
+		success:{
+			
+		}
+	}).on('success.form.fv',function(e){
+		e.preventDefault();
+		var $form = $(e.target),
+			fv = $(e.target).data('formValidation');
+		$.ajax({
+			url :"${ctx}/login/doLogin",
+			type : 'POST',
+			data : $form.serialize(),
+			dataType : "json",
+			success: function(result){
+				if(result.state == "ok"){
+					setTimeout(function(){
+						location.href = "${ctx}/home";
+					},500);
+				}else{
+					refushcode();
+					//加入token问题
+					alertify.error(result.msg);
+				}
+			}
+		});
+	});
+}
+
+</script>
+</body>
+</html>

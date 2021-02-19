@@ -1,0 +1,56 @@
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h4 class="modal-title">${entity.villa_title!'-'}</h4>
+		
+			<button type="button" class="close" aria-hidden="true"
+				data-dismiss="modal">×</button>
+		</div>
+		<div class="modal-body p-10">
+				<div class="tab-content p-10">
+				<div>
+						<div class="row ">
+							<div class="col-sm-2 name">墅型标题：</div>
+							<div class="col-sm-4 value">${entity.villa_title!'-'}</div>
+							<div class="col-sm-2 name">别墅风格：</div>
+							<div class="col-sm-4 value">${entity.villa_style!'-'}</div>
+						</div>
+						<div class="row static-info align-reverse mb-10">
+							<div class="col-sm-2 name mt-5">别墅价格：</div>
+							<div class="col-sm-4 value"><span class="font-size-18 blue-600">${entity.villa_price!'-'}</span>万元</div>
+						</div>
+						<div class="row static-info align-reverse">
+							<div class="col-sm-2 name">占地面积：</div>
+							<div class="col-sm-4 value">${entity.land_area_min!'-'} ~ ${entity.land_area_max!'-'} ㎡</div>
+							<div class="col-sm-2 name">建筑面积：</div>
+							<div class="col-sm-4 value">${entity.floor_area!'-'} ㎡</div>
+						</div>
+						<div class="row static-info align-reverse">
+							<div class="col-sm-2 name">面高：</div>
+							<div class="col-sm-4 value">${entity.face_hight!'-'} ㎡</div>
+							<div class="col-sm-2 name">进深：</div>
+							<div class="col-sm-4 value">${entity.deepth!'-'} ㎡</div>
+						</div>
+						<div class="row static-info align-reverse">
+							<div class="col-sm-2 name">户型：</div>
+							<div class="col-sm-4 value">${entity.house_type!'-'}</div>
+							<div class="col-sm-2 name">层数：</div>
+							<div class="col-sm-4 value">${entity.floor_num!'-'} 层</div>
+						</div>
+						</div>
+				</div>
+		</div>
+		<div class="modal-footer pb-10">
+			<a class="btn btn-sm btn-white" data-dismiss="modal"
+				href="javascript:void(0)">关 闭</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#ajaxModal').on('hidden.bs.modal', function(e) {
+			//清除modal内容
+			$("#ajaxModal").remove();
+		})
+	});
+</script>
