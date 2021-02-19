@@ -2,52 +2,18 @@
 <html>
 
 <!-- 表格插件 -->
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+<link rel="stylesheet" href="${ctx}/assets/css/bootstrap-extend.css">
 <link rel="stylesheet" href="${ctx}/assets/vendor/formvalidation/formValidation.min.css?v=v0.8.1">
-<link rel="stylesheet" href="${ctx}/assets/css/bootstrap-extend.min.css">
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head>
-	<meta charset="utf-8"> 
-	<title>测试页面</title>
-	<style>
-    .fakeimg {
-        height: 200px;
-         background: #aaa;
-    }
-    .navbar-inverse {
-    background-color: #191c1d;
-    border-color: rgba(0,0,0,.1);
-	}
-	
-  </style>
+<meta charset="utf-8">
+<title>测试页面</title>
 </head>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>头部</h1>
-  <p>重置浏览器窗口大小查看效果！</p> 
-</div>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">网站名</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">主页</a></li>
-        <li><a href="#">页面 2</a></li>
-        <li><a href="#">页面 3</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
+	<#include "../include/page-header.html"/>
 <div class="container">
 	<div class="row" style=" margin-right: -250px; margin-left: -250px;">
 		<div class="col-sm-2">
@@ -65,36 +31,67 @@
 			<div class="page-content container-fluid">
 				<form class="form-horizontal" id="dataForm" autocomplete="off">
 					<div class="row">
-							<div class="panel">
-								<div class="panel-heading">
-									<h5 class="panel-title">墅型信息</h5>
-								</div>
-								<div class="panel-body p-10">
-									<div class="form-group row pt-10">
-										<label class="col-md-3 form-control-label">墅型标题：
-										 <span class="required" style="color: red;">*</span>
-										</label>
-										<div class="col-md-6">
-											<input type="text" class="form-control" name="entity.villaTitle" value="${entity.villaTitle!''}" placeholder="请输入标题" />
-										</div>
+						<div class="panel">
+							<div class="panel-heading">
+								<h5 class="panel-title">专辑信息</h5>
+							</div>
+							<div class="panel-body p-10">
+								<div class="form-group row pt-10">
+									<label class="col-md-3 form-control-label">专辑名称：
+									 <span class="required" style="color: red;">*</span>
+									</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="entity.villaTitle" value="${entity.villaTitle!''}" placeholder="请输入专辑名称" />
 									</div>
 								</div>
-								<div class="panel-body p-10">
-									<div class="form-group row">
-										<label class="col-md-3 form-control-label">墅型标题：
-										 <span class="required" style="color: red;">*</span>
-										</label>
-										<div class="col-md-6">
-											<input type="text" class="form-control" name="entity.villa" value="${entity.villaTitle!''}" placeholder="请输入标题" />
-										</div>
+							</div>
+							<div class="panel-body p-10">
+								<div class="form-group row pt-10">
+									<label class="col-md-3 form-control-label">作者：
+									 <span class="required" style="color: red;">*</span>
+									</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="entity.villaTitle" value="${entity.villaTitle!''}" placeholder="请输入作者" />
 									</div>
 								</div>
-								<div class="panel-body p-10">
+							</div>
+							<div class="panel-body p-10">
 								<div class="form-group row">
-								<div class="col-md-12">
-									<button type="submit" id="btnSubmit" class="btn btn-primary" ><i class="fa fa-save"></i> 保存</button>
-									<button type="reset" class="btn btn-default" >重置</button>
+									<label class="col-md-3 form-control-label">专辑类型：
+									 <span class="required" style="color: red;">*</span>
+									</label>
+									<div class="col-md-6">
+										<div class="input-group">
+											<select class="form-control" name="entity.villaStyle" >
+												<option value="">请选择</option>
+												<#if statusList??>
+												<#list statusList as been>
+												<option value="${been!}" <#if (entity.villaStyle!'') == been>selected="selected"</#if>>
+													${been!''}
+												</option>
+												</#list>
+												</#if>
+											</select>
+										</div>
+									</div>
 								</div>
+							</div>
+							<div class="panel-body p-10">
+								<div class="form-group row">
+									<label class="col-md-3 form-control-label">专辑价格：
+									 <span class="required" style="color: red;">*</span>
+									</label>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="entity.villa" value="${entity.villaTitle!''}" placeholder="请输入专辑价格" />
+									</div>
+								</div>
+							</div>
+							<div class="panel-body p-10">
+								<div class="form-group row">
+									<div class="col-md-12">
+										<button type="submit" id="btnSubmit" class="btn btn-primary" ><i class="fa fa-save"></i> 保存</button>
+										<button type="reset" class="btn btn-default" >重置</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -106,7 +103,7 @@
 </div>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <p>底部内容</p>
+	<#include "../include/page-footer.html"/>
 </div>
 
 <script src="${ctx}/assets/vendor/formvalidation/formValidation.min.js?v=v0.8.1"></script>

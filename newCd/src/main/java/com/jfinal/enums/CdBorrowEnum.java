@@ -11,12 +11,13 @@ import com.mj.core.CoreEnum;
 /**
  * 
  * @author Administrator
- * CD借阅状态：1-借阅中，2-未借阅
+ * CD借阅状态：1-借阅中，2-可借阅，3-逾期
  */
 @SuppressWarnings("serial")
 public class CdBorrowEnum implements Serializable{
-	public static final CoreEnum AUDITING = new CoreEnum(1, "AUDITING", "借阅中");
-	public static final CoreEnum AUDIT_UNPASS = new CoreEnum(2, "AUDIT_UNPASS", "审核失败");
+	public static final CoreEnum BORROWING = new CoreEnum(1, "BORROWING", "借阅中");
+	public static final CoreEnum LOANABLE = new CoreEnum(2, "LOANABLE", "可借阅");
+	public static final CoreEnum OVERDUE = new CoreEnum(3, "OVERDUE", "逾期");
 	
 	public static List<CoreEnum> list = list();
 
@@ -26,9 +27,11 @@ public class CdBorrowEnum implements Serializable{
 		}
 		switch (ordinal) {
 		case 1:
-			return AUDITING;
+			return BORROWING;
 		case 2:
-			return AUDIT_UNPASS;
+			return LOANABLE;
+		case 3:
+			return OVERDUE;
 		default:
 			return null;
 		}
@@ -40,9 +43,11 @@ public class CdBorrowEnum implements Serializable{
 		}
 		switch (ordinal) {
 		case 1:
-			return (String)AUDITING.getValue();
+			return (String)BORROWING.getValue();
 		case 2:
-			return (String)AUDIT_UNPASS.getValue();
+			return (String)LOANABLE.getValue();
+		case 3:
+			return (String)OVERDUE.getValue();
 		default:
 			return StringUtils.EMPTY;
 		}
@@ -52,8 +57,9 @@ public class CdBorrowEnum implements Serializable{
 	private static List<CoreEnum> list() {
 		if(list == null){
 			list = new ArrayList<CoreEnum>();
-			list.add(AUDITING);
-			list.add(AUDIT_UNPASS);
+			list.add(BORROWING);
+			list.add(LOANABLE);
+			list.add(OVERDUE);
 		}
 		return list;
 	}

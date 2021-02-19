@@ -14,30 +14,8 @@
   </style>
 </head>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>头部</h1>
-  <p>重置浏览器窗口大小查看效果！</p> 
-</div>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#" data-toggle="tooltip" data-placement="top" title="顶部的 Tooltip">网站名</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">主页</a></li>
-        <li><a href="#">页面 2</a></li>
-        <li><a href="#">页面 3</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+	<#include "../include/page-header.html"/>
 
 <div class="container">
   <div class="row" style=" margin-right: -250px; margin-left: -250px;">
@@ -79,6 +57,7 @@
 							<thead>
 								<tr>
 									<th data-width="30px" data-formatter="serialNumGen" data-align="center">#</th>
+									<th data-field="floor_num_disp" data-sortable="true" data-align="left">一呢母</th>
 									<th data-field="villa_style" data-sortable="true" data-align="left">风格</th>
 									<th data-field="villa_price" data-sortable="true" data-align="right">价格</th>
 									<th data-field="land_area" data-sortable="true" data-align="right">占地面积</th>
@@ -100,7 +79,8 @@
 </div>
 
 <div class="jumbotron text-center" style="margin-bottom:0">
-  <p>底部内容</p>
+  
+	<#include "../include/page-footer.html"/>
 </div>
 
 
@@ -135,9 +115,11 @@
 	function actionFormatter(value,row,index){
 		var _view = "";
 		var _edit = "";
+		var _borrow = "";
 			_edit = '<a class="btn btn-link btn-xs text-primary" title="默认的 Tooltip" data-placement="top" data-toggle="tooltip" href="${ctx}/edit?id='+row.id+'">编辑</a>';
 			_view = '<a class="btn btn-link btn-xs text-primary" onclick="modal(event,this)" href="${ctx}/cd/view?id='+row.id+'">详情</a>';
-		return _view +_edit;
+			_borrow = '<a class="btn btn-link btn-xs text-primary" onclick="modal(event,this)" href="${ctx}/cd/borrow?id='+row.id+'">借阅</a>';
+		return _view +_edit+_borrow;
 	}
 
 </script>

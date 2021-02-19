@@ -10,6 +10,7 @@ import com.jfinal.api.CdApi;
 import com.jfinal.api.Villa;
 import com.jfinal.core.ActionException;
 import com.jfinal.core.Controller;
+import com.jfinal.enums.CdBorrowEnum;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.activerecord.Record;
 import com.mj.constant.CoreConstant;
@@ -56,6 +57,7 @@ public class CdController extends Controller{
 		Page<Record> page = com.jfinal.api.CdApi.api.page(pageNo, pageSize, cond);
 		for (Record record : page.getList()) {
 			record.set("floor_num_str", record.getInt("floor_num") + "层");
+			record.set("floor_num_disp",CdBorrowEnum.getDisp(record.getInt("floor_num")));
 			record.set("selected_flg_disp", StringUtils.equals("Y", record.getStr("selected_flg")) ? "是" : "否");
 		}
 		renderJson(page);
@@ -73,6 +75,19 @@ public class CdController extends Controller{
 		Villa entity = CdApi.api.findById(id);
 		setAttr("entity", entity);
 		render("cd_view.html");
+	}
+	
+	/**
+	 * @Description: 借阅
+	 * @author H
+	 * @date 2020-12-08 14:09:32
+	 * @return
+	 */
+	public void borrow() {
+		String id = getPara("id");
+		Villa entity = CdApi.api.findById(id);
+		setAttr("entity", entity);
+		render("cd_borrow.html");
 	}
 
 }
