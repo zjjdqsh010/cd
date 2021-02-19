@@ -52,6 +52,7 @@ public class CdController extends Controller{
 		cond.put("pageNo", pageNo);
 		cond.put("pageSize", pageSize);
 		///////////////////////////////////////////////////////////////////
+		this.setSessionAttr("CD_LIST_COND_COOKIE", cond);
 		Page<Record> page = com.jfinal.api.CdApi.api.page(pageNo, pageSize, cond);
 		for (Record record : page.getList()) {
 			record.set("floor_num_str", record.getInt("floor_num") + "层");
